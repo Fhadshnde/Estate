@@ -6,6 +6,7 @@ import authRouter from './routes/auth.route.js';
 import listingRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import cors from 'cors'; // استيراد مكتبة cors
 
 dotenv.config();
 
@@ -13,7 +14,7 @@ dotenv.config();
 mongoose
   .connect('mongodb+srv://fhadshnde32:fhad12@cluster0.n4u99.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
   .then(() => {
-    console.log('Connected to MongoDB!')
+    console.log('Connected to MongoDB!');
   })
   .catch((err) => {
     console.log(err);
@@ -23,8 +24,10 @@ const __dirname = path.resolve();
 
 const app = express();
 
-app.use(express.json());
+// تمكين CORS
+app.use(cors());
 
+app.use(express.json());
 app.use(cookieParser());
 
 app.listen(3000, () => {
@@ -36,10 +39,6 @@ app.use('/api/auth', authRouter);
 app.use('/api/listing', listingRouter);
 
 app.use(express.static(path.join(__dirname, '/client/dist')));
-
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-// });
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
