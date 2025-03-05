@@ -28,9 +28,12 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-app.listen(3000, () => {
+const server = app.listen(3000, () => {
   console.log('Server is running on port 3000!');
 });
+
+// زيادة مهلة الخادم إلى 10 دقائق
+server.setTimeout(10 * 60 * 1000);
 
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
