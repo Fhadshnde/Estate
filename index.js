@@ -10,16 +10,14 @@ import cors from 'cors'; // استيراد مكتبة cors
 
 dotenv.config();
 
-// بدل استخدام process.env.MONGO، ضع هنا الـ URI مباشرةً
 mongoose
-  .connect('mongodb+srv://fhadshnde32:fhad12@cluster0.n4u99.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+  .connect(process.env.MONGO)
   .then(() => {
     console.log('Connected to MongoDB!');
   })
   .catch((err) => {
     console.log(err);
   });
-
 const __dirname = path.resolve();
 
 const app = express();

@@ -2,9 +2,11 @@ import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
 import { errorHandler } from '../utils/error.js';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
-// المفتاح السري الثابت لـ JWT
-const JWT_SECRET = 'your_jwt_secret_key';
+dotenv.config(); // تحميل متغيرات البيئة
+
+const JWT_SECRET = process.env.JWT_SECRET; // استخدام المتغير البيئي
 
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;

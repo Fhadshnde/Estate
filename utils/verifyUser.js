@@ -1,8 +1,11 @@
 import jwt from 'jsonwebtoken';
 import { errorHandler } from './error.js';
+import dotenv from 'dotenv';
 
-// المفتاح السري الثابت لـ JWT
-const JWT_SECRET = 'your_jwt_secret_key';
+
+dotenv.config(); // تحميل متغيرات البيئة
+
+const JWT_SECRET = process.env.JWT_SECRET; // استخدام المتغير البيئي
 
 export const verifyToken = (req, res, next) => {
   const token = req.cookies.access_token;
