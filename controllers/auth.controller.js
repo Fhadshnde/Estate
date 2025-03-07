@@ -4,7 +4,7 @@ import { errorHandler } from '../utils/error.js';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
-dotenv.config(); // تحميل متغيرات البيئة
+dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET; // استخدام المتغير البيئي
 
