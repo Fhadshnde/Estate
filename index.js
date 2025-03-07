@@ -20,8 +20,13 @@ mongoose
   });
 const __dirname = path.resolve();
 
-const app = express();
+const app = express();const corsOptions = {
+  origin: "http://localhost:3000",  
+  methods: "GET,POST",
+  allowedHeaders: "Content-Type,Authorization"
+};
 
+app.use(cors(corsOptions));
 // تمكين CORS
 app.use(cors());
 
